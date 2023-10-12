@@ -1,16 +1,17 @@
 function NavBar({pokemonIndex, setPokemonIndex, pokemonList}) {
-  const handlePreviousClick = () => {
-    setPokemonIndex(pokemonIndex - 1)
-  }
-
-  const handleNextClick = () => {
-    setPokemonIndex(pokemonIndex + 1)
-  }
   
+  const handleClick = ((pokemonIndex) => {
+    setPokemonIndex(pokemonIndex);
+  });
+
   return (
     <div>
-      {(pokemonIndex > 0) ? (<button onClick={handlePreviousClick}>Précédent</button>) : ""}
-      {(pokemonIndex < pokemonList.length -1) ? (<button onClick={handleNextClick}>Suivant</button>) : ""}
+      {pokemonList.map((pokemon, pokemonIndex) => (
+        <button 
+          key={pokemon.name}
+          onClick={ () => handleClick(pokemonIndex)}
+        >{pokemon.name}</button>
+      ))}
     </div>
   );
 }
